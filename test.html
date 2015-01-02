@@ -1,0 +1,223 @@
+<html>
+<head>
+	<title>Conditional Support[mockup]</title>
+	<link rel="shortcut icon" href="favicon.png"/>
+	<link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz' rel='stylesheet' type='text/css'/>
+	<style type="text/css">
+		body {
+			font-family: 'Yanone Kaffeesatz', sans-serif;
+			/*font-family: 'Droid Sans', sans-serif;*/
+			margin: 0px;
+			font-size: 20px;
+			display: flex;
+			flex-direction:column;
+			justify-content: flex-start;
+			align-items:center;
+		}
+		p{
+			margin-bottom: 0px;
+		}
+
+		#frame_bar{
+			display:flex;
+			font-size: 30px;
+			height: 50px;
+			width: 100%;
+			flex-direction: row;
+			align-items: center;
+			justify-content: flex-start;
+		}
+		#frame_bar > *{
+			margin-left: 11px;
+		}
+
+		#title{
+			position:relative;
+			display:inline-block;
+			margin-top: 0px;
+			font-size: 37px;
+		}
+		.condition_editable{
+			border-radius: 5px;
+		}
+		.condition{
+			position:relative;
+			text-align:left;
+			font-size: 37px;
+		}
+		.condition_text:after{
+			content:'... '
+		}
+		.btn{
+			display:inline-block;
+			cursor: pointer;
+			position:relative;
+			font-size: 67%;
+			border-radius: 7px;
+		}
+		.btn > span{
+			display:inline-block;
+			position:relative;
+			bottom:4px;
+			transition: all 0.1s ease-in;
+			/*vertical-align: top;*/
+			border-radius: 7px;
+			padding-left: 4px;
+			padding-right: 4px;
+		}
+		.btn.down > span{
+			bottom:0px;
+			transition: all 0s;
+		}
+
+		.minor{
+			font-size: 23px;
+		}
+
+		#introductions{
+			display: inline-block;
+			text-align: center;
+		}
+
+		#conditions{
+			margin-top: 39px;
+		}
+
+		#content{
+			flex-grow: 1;
+			text-align: left;
+			/*height: 37px;*/
+		}
+		#describes_title{
+			margin-top: 39px;
+		}
+
+		#detail{
+			margin-top: 0px;
+			text-align: left;
+		}
+		
+		#service_title{
+			position:relative;
+		}
+		#service_title:after{
+			position:absolute;
+			right:-5px;
+			bottom:-5px;
+			font-size: 13px;
+			content:'[mockup]';
+		}
+
+		#venture_name{
+			padding-left: 7px;
+			padding-right: 7px;
+			padding-bottom: 2px;
+		}
+		#closing_date:before{
+			display: block;
+			font-size: 16px;
+			content:'resolves in';
+		}
+		#closing_date{
+			padding-left: 7px;
+			padding-right: 7px;
+			padding-bottom: 2px;
+		}
+
+		#after_intro{
+			display:flex;
+			box-sizing:border-box;
+			margin-top: 39px;
+			width:100%;
+			flex-direction: row;
+			padding-left: 6px;
+		}
+		#sidebar{
+			width: 152px;
+			-webkit-flex-basis: 152px;
+			flex-shrink: 0;
+			flex-basis: 152px;
+			/*height: 37px;*/
+		}
+		
+		#nexter{
+			position: fixed;
+			cursor: pointer;
+			padding: 4px;
+			right:0px;
+			bottom:0px;
+		}
+		
+
+		@media (min-width: 881px){
+			#content{
+				width:729px;
+			}
+			#after_intro{
+				width:841px;
+			}
+		}
+		@media (max-width: 880px){ /*else*/
+			body:not(.light_theme) #after_intro{ /*black theme doesn't need padding at the left to look right as most screens will have a black bezel, which shall provide negative space for us. Not that you actually need negative space there for any reasonable usability reason.*/
+				padding-left: 0px;
+			}
+		}
+
+		body.light_theme { background-color:white; color:black; }
+		body.light_theme #frame_bar{ background-color: #eeeeee; color: #c9c9c9; }
+		body.light_theme .condition_editable{ background-color: #f3f3f3; }
+		body.light_theme .minor{ color: #c5c5c5; }
+		body.light_theme #tagline { color:#dcdcdc }
+		body.light_theme #sidebar { background-color:#d5d5d5 }
+		body.light_theme #venture_name{ background-color:white }
+		body.light_theme #service_title:after{ color:black }
+		body.light_theme #closing_date{ background-color:#eeeeee }
+		body.light_theme .condition_text{ color:#4a4a4a }
+		body.light_theme .keyword{ color:black }
+		body.light_theme .btn{ background-color:#eaeaea }
+		body.light_theme .btn span{ background-color:#e0e0e0 }
+		body.light_theme #nexter{ background-color:#eeeeee }
+
+		/*It is unlikely that the fashions of web design will demand that we support any other themes in the near future, so we'll assume a dichotomy.*/
+		body:not(.light_theme) { background-color:black; color:white; }
+		body:not(.light_theme) #frame_bar{ background-color: rgb(17,17,17); color: rgb(51,51,51); }
+		body:not(.light_theme) .condition_editable{ background-color: #f3f3f3; }
+		body:not(.light_theme) .minor{ color: #3d3d3d; }
+		body:not(.light_theme) #tagline { color:#191919 }
+		body:not(.light_theme) #sidebar { background-color:#1c1c1c }
+		body:not(.light_theme) #venture_name{ background-color:black }
+		body:not(.light_theme) #service_title:after{ color:white }
+		body:not(.light_theme) #closing_date{ background-color:rgb(17,17,17) }
+		body:not(.light_theme) .condition_text{ color:#878787 }
+		body:not(.light_theme) .keyword{ color:white }
+		body:not(.light_theme) .btn{ background-color:#1c1c1c }
+		body:not(.light_theme) .btn span{ background-color:#282828 }
+		body:not(.light_theme) #nexter{ background-color:rgb(17,17,17) }
+		/*body:not(.light_theme) .btn:hover span{ background-color:#383838 }*/
+	</style>
+	<script type="text/javascript" src="index.js"></script>
+</head>
+<body class="light_theme">
+	<div id="frame_bar">
+		<img src="henlessEgg.png">
+		<span id="service_title">Conditional Support.</span>
+		<span id="tagline">a platform for intelligent movement</span>
+	</div>
+	<div id="introductions">
+		<p id="describes_title" class="minor"> A Motion has Been Proposed.
+		<p id="title">
+		<p id="conditions">
+	</div>
+	<div id="after_intro">
+		<div id="content">
+			<p id="detail"></p>
+			<p id="reminder_to_enter" class="minor"><a href="#introductions" class="minor">Are you ready to pledge (conditional)support for the venture? Click here.</a></p>
+		</div>
+		<div id="sidebar">
+			<div id="venture_name"></div>
+			<div id="closing_date"></div>
+		</div>
+	</div>
+	<a id="nexter">Next Campaign</a>
+</body>
+</html>
